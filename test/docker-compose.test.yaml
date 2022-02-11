@@ -1,0 +1,22 @@
+version: "3"
+services:
+  control-plane:
+    build: .
+    ports:
+      - "18000:18000"
+    volumes:
+      - ./script.json:/etc/script.json
+  envoy-1:
+    image: envoyproxy/envoy-dev:65541accdafe255e72310b4298d646e091da2d80
+    ports:
+      - "10000:10000"
+      - "19000:19000"
+    volumes:
+      - ./sample/envoy-1.yaml:/etc/envoy/envoy.yaml
+  envoy-2:
+    image: envoyproxy/envoy-dev:65541accdafe255e72310b4298d646e091da2d80
+    ports:
+      - "10001:10001"
+      - "19001:19001"
+    volumes:
+      - ./sample/envoy-2.yaml:/etc/envoy/envoy.yaml

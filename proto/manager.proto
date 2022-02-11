@@ -1,0 +1,17 @@
+syntax = "proto3";
+
+package api;
+option go_package = "github.com/maycommit/envoy-control-plane;api";
+
+service Manager {
+  rpc CreateRoute (Route) returns (Route) {}
+  rpc Sync (Routes) returns (Routes) {}
+}
+
+message Routes {
+  repeated Route route = 1;
+}
+
+message Route {
+  bytes data = 1;
+}
